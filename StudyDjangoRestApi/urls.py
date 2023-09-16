@@ -17,6 +17,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+# Include views for jwt
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
+
 # Include all routes of project in base route
 from rest_framework import routers
 from books.api import viewsets as booksviewsets
@@ -24,8 +27,9 @@ from books.api import viewsets as booksviewsets
 route = routers.DefaultRouter()
 route.register(r'books', booksviewsets.BooksViewSet, basename='Books')
 
-
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include(route.urls))
+    path('token/', TokenObtainPairView.as_view()),
+    path('token/refresh/', TokenRefreshView.as_view()),
+    path('', include(route.urls)),
 ]
