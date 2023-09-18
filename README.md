@@ -5,6 +5,7 @@
 Recomenda-se ativar o ambiente virtual:
 ```sh
 python3 -m venv venv
+.\venv\Scripts\activate
 ```
 
 Instalação do Django e DjangoRestFramework:
